@@ -7,6 +7,10 @@
     <title>Book A Room</title>
 </head>
 <body>
+    <form action="" method="post">
     {{ form.as_p}}
+    {% csrf_token %}
+    <button type="submit">Book Room</button>
+    </form>
 </body>
 </html>
