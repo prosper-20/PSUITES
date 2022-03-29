@@ -4,7 +4,7 @@ from django.views.generic import ListView, FormView
 
 from hotel.forms import AvailabilityForm 
 from .models import Room, Booking
-from hotel.booking_functions import check_availability
+from hotel.booking_functions.availability import check_availability
 # Create your views here.
 
 class RoomList(ListView):
@@ -30,7 +30,7 @@ class BookingView(FormView):
         if len(available_rooms) > 0:
             room = available_rooms[0]
             booking = Booking.objects.create(
-                user=request.user,
+                user=self.request.user,
                 room=room,
                 check_in=data['check_in'],
                 check_out=data['check_out']
