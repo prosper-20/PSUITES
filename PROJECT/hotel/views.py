@@ -1,8 +1,7 @@
 from typing import List
 from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView, FormView, View
-
-from hotel.forms import AvailabilityForm 
+from .forms import AvailabilityForm 
 from .models import Room, Booking
 from hotel.booking_functions.availability import check_availability
 # Create your views here.
@@ -14,9 +13,11 @@ def RoomListView(requsest):
     room_values = room_categories.values()
     print('categories=', room_values)
     room_list =[]
-    # for room_category in room_categories:
+    for room_category in room_categories:
+        room = room_categories.get(room_category)
+        print(room)
     context = {
-        (room_category, room_url)
+
     }
     return render(requsest, 'hotel/room_list_view.html', context)
 
