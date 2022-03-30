@@ -16,7 +16,7 @@
 
     <!-- Main Content -->
     <div class="content">
-
+        {% for room in room_list %}
         <div class="room">
             <a href="detail.html">
                 <img
@@ -26,6 +26,7 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi</p>
             </a>
         </div>
+        {% endfor %}
 
         <div class="room">
             <a href="detail.html">

@@ -1,3 +1,5 @@
+from audioop import reverse
+from django.urls import reverse
 from typing import List
 from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView, FormView, View
@@ -15,9 +17,10 @@ def RoomListView(requsest):
     room_list =[]
     for room_category in room_categories:
         room = room_categories.get(room_category)
-        print(room)
+        room_url = reverse('RoomDetailView', kwargs={'category': room_category})
+        room_list.append((room,room_url))
     context = {
-
+        "room_list": room_list,
     }
     return render(requsest, 'hotel/room_list_view.html', context)
 
