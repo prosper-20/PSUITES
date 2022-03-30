@@ -7,8 +7,13 @@ from .models import Room, Booking
 from hotel.booking_functions.availability import check_availability
 # Create your views here.
 
-class RoomListView(ListView):
-    model = Room
+def RoomListView(requsest):
+    room = Room.objects.all()[0]
+    room_categories = dict(room.ROOM_CATEGORIES)
+    context = {
+
+    }
+    return render(requsest, 'hotel/room_list_view.html', context)
 
 
 class BookingList(ListView):
