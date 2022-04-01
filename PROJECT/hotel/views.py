@@ -23,7 +23,7 @@ def RoomListView(requsest):
     return render(requsest, 'hotel/room_list_view.html', context)
 
 
-class BookingList(ListView):
+class BookingListView(ListView):
     model = Booking
     template_name = "hotel/booking_list_view.html"
     def get_queryset(self, *args, **kwargs):
@@ -82,7 +82,8 @@ class RoomDetailView(View):
 
 class CancelBookingView(DeleteView):
     model = Booking
-    success_url = reverse_lazy('BookingList')
+    template_name = "hotel/booking_cancel_view.html"
+    success_url = reverse_lazy('BookingListView')
 
 # class BookingView(FormView):
 #     form_class = AvailabilityForm

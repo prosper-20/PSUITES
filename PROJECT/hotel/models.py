@@ -35,3 +35,4 @@ class Booking(models.Model):
         return room_category
 
     def get_cancel_booking_url(self):
+        pass
