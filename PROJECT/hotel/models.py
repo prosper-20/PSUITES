@@ -33,3 +33,5 @@ class Booking(models.Model):
         room_categories = dict(self.room.ROOM_CATEGORIES)
         room_category = room_categories.get(self.room.category)
         return room_category
+
+    def get_cancel_booking_url(self):

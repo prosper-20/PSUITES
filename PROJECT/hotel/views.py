@@ -1,8 +1,8 @@
 from audioop import reverse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from typing import List
 from django.shortcuts import render, HttpResponse
-from django.views.generic import ListView, FormView, View
+from django.views.generic import ListView, FormView, View, DeleteView
 from .forms import AvailabilityForm 
 from .models import Room, Booking
 from hotel.booking_functions.availability import check_availability
@@ -80,6 +80,9 @@ class RoomDetailView(View):
             return HttpResponse("This category of rooms are fully booked!")
 
 
+class CancelBookingView(DeleteView):
+    model = Booking
+    success_url = reverse_lazy('BookingList')
 
 # class BookingView(FormView):
 #     form_class = AvailabilityForm
