@@ -10,13 +10,6 @@ from hotel.booking_functions.availability import check_availability
 
 def RoomListView(requsest):
     room = Room.objects.all()[0]
-    room_categories = dict(room.ROOM_CATEGORIES)
-    room_values = room_categories.values()
-    room_list =[]
-    for room_category in room_categories:
-        room = room_categories.get(room_category)
-        room_url = reverse('RoomDetailView', kwargs={'category': room_category})
-        room_list.append((room,room_url))
     context = {
         "room_list": room_list,
     }
