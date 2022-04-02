@@ -6,12 +6,13 @@ from django.views.generic import ListView, FormView, View, DeleteView
 from .forms import AvailabilityForm 
 from .models import Room, Booking
 from hotel.booking_functions.availability import check_availability
+from hotel.booking_functions.get_room_cat_url_list import get_room_cat_url_list
 # Create your views here.
 
 def RoomListView(requsest):
-    room = Room.objects.all()[0]
+    room_category_url_list = get_room_cat_url_list()
     context = {
-        "room_list": room_list,
+        "room_list": room_category_url_list,
     }
     return render(requsest, 'hotel/room_list_view.html', context)
 
