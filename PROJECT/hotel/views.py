@@ -33,19 +33,14 @@ class RoomDetailView(View):
     def get(self, request, *args, **kwargs):
             category = self.kwargs.get('category', None)
             form = AvailabilityForm()
-            room_list = Room.objects.filter(category=category)
-            
-            if len(room_list) > 0:
-                room = room_list[0]
-                room_category = dict(room.ROOM_CATEGORIES).get(room.category, None)
-                context = {
-                    'room_category': room_category,
-                    "form": form
-                }
-                return render(request, 'hotel/room_detail_view.html', context)
-            else:
-                return HttpResponse("Category doesn't exist")
-
+            context = {
+            'room_category': room_category,
+            "form": form
+        }
+        return render(request, 'hotel/room_detail_view.html', context)
+    else:
+        return HttpResponse("Category doesn't exist")
+ 
         
 
     def post(self, request, *args, **kwargs):
