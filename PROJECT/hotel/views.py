@@ -7,6 +7,7 @@ from .forms import AvailabilityForm
 from .models import Room, Booking
 from hotel.booking_functions.availability import check_availability
 from hotel.booking_functions.get_room_cat_url_list import get_room_cat_url_list
+from hotel.booking_functions.get_room_category_human_format import get_room_category_human_format
 # Create your views here.
 
 def RoomListView(requsest):
@@ -31,16 +32,17 @@ class BookingListView(ListView):
 
 class RoomDetailView(View):
     def get(self, request, *args, **kwargs):
-            category = self.kwargs.get('category', None)
-            form = AvailabilityForm()
+        category = self.kwargs.get('category', None)
+        human_format_room_category = get_room_category_human_format(category)
+        form = AvailabilityForm()
+        if human_format_room_category is not None:
             context = {
-            'room_category': room_category,
-            "form": form
+            'room_category': human_format_room_category,
+            "form": form,
         }
-        return render(request, 'hotel/room_detail_view.html', context)
-    else:
-        return HttpResponse("Category doesn't exist")
- 
+            return render(request, 'hotel/room_detail_view.html', context)
+        else:
+            return HttpResponse('Category does not exist')
         
 
     def post(self, request, *args, **kwargs):
