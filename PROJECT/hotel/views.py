@@ -35,9 +35,11 @@ class BookingListView(ListView):
 class RoomDetailView(View):
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
+
+        # Get the human raedable formst
         human_format_room_category = get_room_category_human_format(category)
-        form = AvailabilityForm()
-        if human_format_room_category is not None:
+        form = AvailabilityForm() # Initialisze empty form
+        if human_format_room_category is not None: # check for invalid category names
             context = {
                 'room_category': human_format_room_category,
                 "form": form,
@@ -48,9 +50,9 @@ class RoomDetailView(View):
         
 
     def post(self, request, *args, **kwargs):
-        category = self.kwargs.get('category', None)
+        category = self.kwargs.get('category', None) #Get room category from kwargs
         
-        form = AvailabilityForm(request.POST)
+        form = AvailabilityForm(request.POST) # pass request.POST into AvailabilityForm
         if form.is_valid():
             data = form.cleaned_data
 
