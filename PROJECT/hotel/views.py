@@ -54,11 +54,10 @@ class RoomDetailView(View):
         if form.is_valid():
             data = form.cleaned_data
 
-        available_rooms = get_available_rooms()
+        available_rooms = get_available_rooms(category, data['check_in', data['check_out']])
 
         if available_rooms is not None:
             book_room(request, available_rooms[0], data['check_in'], data['check_out'])
-           
             return HttpResponse(booking)
         else:
             return HttpResponse("This category of rooms are fully booked!")
