@@ -37,9 +37,9 @@ class RoomDetailView(View):
         form = AvailabilityForm()
         if human_format_room_category is not None:
             context = {
-            'room_category': human_format_room_category,
-            "form": form,
-        }
+                'room_category': human_format_room_category,
+                "form": form,
+            }
             return render(request, 'hotel/room_detail_view.html', context)
         else:
             return HttpResponse('Category does not exist')
